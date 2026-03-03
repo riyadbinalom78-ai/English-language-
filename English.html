@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English শেখার সম্পূর্ণ রোডম্যাপ</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --cream: #faf7f2;
+    --warm: #f5efe4;
+    --gold: #c9933a;
+    --gold-light: #f0d49a;
+    --rust: #b84b2a;
+    --green: #2a6b4f;
+    --green-light: #e8f5ee;
+    --blue: #1a4a7a;
+    --blue-light: #e4eef8;
+    --purple: #5a2d7a;
+    --purple-light: #f0e8f8;
+    --red-light: #faeaea;
+    --red: #a82828;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(201,147,58,.06) 40px,
+      rgba(201,147,58,.06) 41px
+    );
+  }
+  .hero-badge {
+    display: inline-block;
+    border: 1.5px solid var(--gold);
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero p {
+    font-size: 1.05rem;
+    opacity: .75;
+    max-width: 580px;
+    margin: 0 auto 28px;
+    font-weight: 300;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+  .stat-label { font-size: .78rem; opacity: .6; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── SECTION TITLE ── */
+  .section-header {
+    text-align: center;
+    padding: 52px 0 32px;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+  }
+  .section-header p { font-size: .95rem; opacity: .65; margin-top: 6px; }
+  .divider {
+    width: 48px; height: 3px;
+    background: var(--gold);
+    margin: 14px auto 0;
+  }
+
+  /* ── LEVEL CARDS (Phase) ── */
+  .phase {
+    margin-bottom: 44px;
+    border: 1.5px solid #e0d8cc;
+    border-radius: 4px;
+    overflow: hidden;
+    animation: fadeUp .5s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(18px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  .phase:nth-child(1) { animation-delay: .05s; }
+  .phase:nth-child(2) { animation-delay: .12s; }
+  .phase:nth-child(3) { animation-delay: .19s; }
+  .phase:nth-child(4) { animation-delay: .26s; }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 28px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .phase-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1;
+    opacity: .15;
+    min-width: 48px;
+  }
+  .phase-meta { flex: 1; }
+  .phase-label {
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    opacity: .55;
+    margin-bottom: 3px;
+  }
+  .phase-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+  .phase-subtitle { font-size: .88rem; opacity: .6; margin-top: 2px; }
+  .phase-badge {
+    font-size: .75rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .toggle-icon {
+    font-size: 1.2rem;
+    transition: transform .3s;
+    opacity: .5;
+    min-width: 24px;
+    text-align: center;
+  }
+  .phase.open .toggle-icon { transform: rotate(180deg); }
+
+  /* Color themes per phase */
+  .phase-1 .phase-header { background: var(--green-light); border-left: 4px solid var(--green); }
+  .phase-1 .phase-num { color: var(--green); }
+  .phase-1 .phase-badge { background: var(--green); color: #fff; }
+
+  .phase-2 .phase-header { background: var(--blue-light); border-left: 4px solid var(--blue); }
+  .phase-2 .phase-num { color: var(--blue); }
+  .phase-2 .phase-badge { background: var(--blue); color: #fff; }
+
+  .phase-3 .phase-header { background: var(--purple-light); border-left: 4px solid var(--purple); }
+  .phase-3 .phase-num { color: var(--purple); }
+  .phase-3 .phase-badge { background: var(--purple); color: #fff; }
+
+  .phase-4 .phase-header { background: #fff3e8; border-left: 4px solid var(--rust); }
+  .phase-4 .phase-num { color: var(--rust); }
+  .phase-4 .phase-badge { background: var(--rust); color: #fff; }
+
+  /* Phase body */
+  .phase-body { display: none; padding: 0 28px 28px; background: #fff; }
+  .phase.open .phase-body { display: block; }
+
+  /* Skills grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+    margin: 20px 0;
+  }
+  .skill-card {
+    border: 1px solid #ede8e0;
+    border-radius: 4px;
+    padding: 18px;
+    transition: box-shadow .2s;
+  }
+  .skill-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+  .skill-icon { font-size: 1.5rem; margin-bottom: 8px; }
+  .skill-title { font-weight: 700; font-size: .95rem; margin-bottom: 6px; }
+  .skill-list { list-style: none; }
+  .skill-list li {
+    font-size: .85rem;
+    opacity: .75;
+    padding: 3px 0 3px 16px;
+    position: relative;
+  }
+  .skill-list li::before {
+    content: '→';
+    position: absolute; left: 0;
+    opacity: .5;
+    font-size: .75rem;
+  }
+
+  /* Resources */
+  .resources-title {
+    font-weight: 700;
+    font-size: .85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: .5;
+    margin: 20px 0 10px;
+  }
+  .resources-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .resource-tag {
+    font-size: .8rem;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid #e0d8cc;
+    background: var(--warm);
+    font-weight: 500;
+  }
+  .resource-tag.free { border-color: var(--green); color: var(--green); background: var(--green-light); }
+  .resource-tag.paid { border-color: var(--gold); color: #8a5a00; background: #fff8e8; }
+
+  /* Tips box */
+  .tip-box {
+    background: var(--warm);
+    border-left: 3px solid var(--gold);
+    padding: 14px 18px;
+    margin-top: 18px;
+    border-radius: 0 4px 4px 0;
+    font-size: .88rem;
+  }
+  .tip-box strong { color: var(--gold); }
+
+  /* ── SCHEDULE ── */
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .schedule-card {
+    border: 1px solid #ede8e0;
+    border-radius: 4px;
+    overflow: hidden;
+    text-align: center;
+  }
+  .schedule-day {
+    background: var(--ink);
+    color: var(--cream);
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 8px;
+  }
+  .schedule-content { padding: 14px 12px; font-size: .82rem; }
+  .schedule-content strong { display: block; margin-bottom: 4px; font-size: .9rem; }
+
+  /* ── TIPS SECTION ── */
+  .tips-list {
+    list-style: none;
+    counter-reset: tip;
+  }
+  .tips-list li {
+    counter-increment: tip;
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0ece4;
+    align-items: flex-start;
+  }
+  .tips-list li::before {
+    content: counter(tip, decimal-leading-zero);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--gold);
+    min-width: 36px;
+    line-height: 1.2;
+  }
+  .tips-list li strong { display: block; margin-bottom: 3px; font-size: .95rem; }
+  .tips-list li span { font-size: .88rem; opacity: .7; }
+
+  /* ── MISTAKES ── */
+  .mistake-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .mistake-card {
+    padding: 14px 16px;
+    border-radius: 4px;
+    font-size: .88rem;
+  }
+  .mistake-card.wrong { background: var(--red-light); border-left: 3px solid var(--red); }
+  .mistake-card.right { background: var(--green-light); border-left: 3px solid var(--green); }
+  .mistake-card .label {
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    opacity: .6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: var(--cream);
+    text-align: center;
+    padding: 40px 24px;
+    margin-top: 60px;
+  }
+  footer .quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    max-width: 500px;
+    margin: 0 auto 12px;
+    opacity: .9;
+  }
+  footer .quote-attr { font-size: .8rem; opacity: .4; letter-spacing: 1px; }
+
+  /* ── PROGRESS BAR ── */
+  .progress-wrap { margin: 20px 0 8px; }
+  .progress-label {
+    display: flex; justify-content: space-between;
+    font-size: .8rem; opacity: .6; margin-bottom: 5px;
+  }
+  .progress-bar { height: 6px; background: #e8e2d8; border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 3px; transition: width .8s ease; }
+  .fill-green { background: var(--green); }
+  .fill-blue  { background: var(--blue); }
+  .fill-purple{ background: var(--purple); }
+  .fill-rust  { background: var(--rust); }
+
+  /* responsive */
+  @media(max-width:600px){
+    .hero { padding: 40px 20px; }
+    .hero-stats { gap: 24px; }
+    .phase-header { padding: 16px 18px; gap: 12px; }
+    .phase-body { padding: 0 18px 22px; }
+    .mistake-row { grid-template-columns: 1fr; }
+    .phase-num { font-size: 1.8rem; min-width: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-badge">Complete Roadmap • সম্পূর্ণ গাইড</div>
+  <h1>English Language<br><span>শেখার রোডম্যাপ</span></h1>
+  <p>শূন্য থেকে শুরু করে দক্ষ হওয়া পর্যন্ত — ধাপে ধাপে সম্পূর্ণ গাইড</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">৪</span><span class="stat-label">ধাপ</span></div>
+    <div class="stat"><span class="stat-num">৪টি</span><span class="stat-label">দক্ষতা</span></div>
+    <div class="stat"><span class="stat-num">৬–১২</span><span class="stat-label">মাস পরিকল্পনা</span></div>
+    <div class="stat"><span class="stat-num">৩০+</span><span class="stat-label">রিসোর্স</span></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ══ OVERVIEW ══ -->
+  <div class="section-header">
+    <h2>চারটি মূল দক্ষতা</h2>
+    <p>English শিখতে হলে এই চারটি ক্ষেত্রে দক্ষতা অর্জন করতে হবে</p>
+    <div class="divider"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon">👂</div>
+      <div class="skill-title">Listening (শোনা)</div>
+      <ul class="skill-list">
+        <li>Native speaker বোঝা</li>
+        <li>Podcast, News শোনা</li>
+        <li>Accent পার্থক্য বোঝা</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗣️</div>
+      <div class="skill-title">Speaking (বলা)</div>
+      <ul class="skill-list">
+        <li>উচ্চারণ (Pronunciation)</li>
+        <li>Fluency ও Confidence</li>
+        <li>Daily conversation</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">📖</div>
+      <div class="skill-title">Reading (পড়া)</div>
+      <ul class="skill-list">
+        <li>দ্রুত ও বোঝে পড়া</li>
+        <li>Vocabulary বাড়ানো</li>
+        <li>Articles, Books পড়া</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">✍️</div>
+      <div class="skill-title">Writing (লেখা)</div>
+      <ul class="skill-list">
+        <li>Grammar সঠিক রাখা</li>
+        <li>Email, Essay লেখা</li>
+        <li>Creative writing</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ PHASES ══ -->
+  <div class="section-header">
+    <h2>শেখার ধাপসমূহ</h2>
+    <p>প্রতিটি ধাপে ক্লিক করে বিস্তারিত দেখুন</p>
+    <div class="divider"></div>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div class="phase phase-1 open" id="p1">
+    <div class="phase-header" onclick="toggle('p1')">
+      <div class="phase-num">১</div>
+      <div class="phase-meta">
+        <div class="phase-label">Phase 01 · Beginner</div>
+        <div class="phase-title">ভিত্তি তৈরি করো</div>
+        <div class="phase-subtitle">Duration: মাস ১–২</div>
+      </div>
+      <span class="phase-badge">Beginner</span>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="phase-body">
+      <div class="progress-wrap">
+        <div class="progress-label"><span>লক্ষ্যমাত্রা</span><span>Months 1–2</span></div>
+        <div class="progress-bar"><div class="progress-fill fill-green" style="width:25%"></div></div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">🔤</div>
+          <div class="skill-title">Alphabet & Phonics</div>
+          <ul class="skill-list">
+            <li>২৬টি letter ভালোভাবে চেনো</li>
+            <li>Vowel (a,e,i,o,u) ও Consonant</li>
+            <li>প্রতিটি শব্দের Sound শেখো</li>
+            <li>IPA (Phonetic symbols) পরিচয়</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">💬</div>
+          <div class="skill-title">Basic Vocabulary</div>
+          <ul class="skill-list">
+            <li>প্রতিদিন ১০টি নতুন শব্দ শেখো</li>
+            <li>১০০০টি Common words মুখস্থ</li>
+            <li>Colors, Numbers, Days শেখো</li>
+            <li>Family ও Body parts</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📐</div>
+          <div class="skill-title">Basic Grammar</div>
+          <ul class="skill-list">
+            <li>Noun, Verb, Adjective, Adverb</li>
+            <li>Simple Sentences: I am, He is</li>
+            <li>Present Tense (Simple)</li>
+            <li>Question করতে শেখো: What, Who, Where</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🗣️</div>
+          <div class="skill-title">Basic Speaking</div>
+          <ul class="skill-list">
+            <li>Greetings: Hello, Hi, Good morning</li>
+            <li>নিজের পরিচয় দেওয়া</li>
+            <li>Simple daily phrases</li>
+            <li>Mirror-এর সামনে Practice</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="resources-title">📚 সেরা রিসোর্স</div>
+      <div class="resources-grid">
+        <span class="resource-tag free">🟢 Duolingo (Free)</span>
+        <span class="resource-tag free">🟢 BBC Learning English</span>
+        <span class="resource-tag free">🟢 EnglishClass101 (YouTube)</span>
+        <span class="resource-tag free">🟢 Google Translate</span>
+        <span class="resource-tag paid">⭐ Oxford Beginner Book</span>
+        <span class="resource-tag free">🟢 Anki App (Flashcard)</span>
+      </div>
+
+      <div class="tip-box">
+        <strong>💡 Pro Tip:</strong> শুরুতেই Perfect হওয়ার চেষ্টা করো না। ভুল করা শেখার অংশ। প্রতিদিন মাত্র ৩০ মিনিট দাও — consistent থাকাটাই সবচেয়ে জরুরি।
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase phase-2" id="p2">
+    <div class="phase-header" onclick="toggle('p2')">
+      <div class="phase-num">২</div>
+      <div class="phase-meta">
+        <div class="phase-label">Phase 02 · Elementary</div>
+        <div class="phase-title">Grammar ও Vocabulary শক্তিশালী করো</div>
+        <div class="phase-subtitle">Duration: মাস ৩–৫</div>
+      </div>
+      <span class="phase-badge">Elementary</span>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="phase-body">
+      <div class="progress-wrap">
+        <div class="progress-label"><span>লক্ষ্যমাত্রা</span><span>Months 3–5</span></div>
+        <div class="progress-bar"><div class="progress-fill fill-blue" style="width:50%"></div></div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">📐</div>
+          <div class="skill-title">Tenses (কাল)</div>
+          <ul class="skill-list">
+            <li>Present Simple & Continuous</li>
+            <li>Past Simple & Continuous</li>
+            <li>Future: will / going to</li>
+            <li>Present Perfect: have/has + V3</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📦</div>
+          <div class="skill-title">Vocabulary Building</div>
+          <ul class="skill-list">
+            <li>২০০০–৩০০০ Common words</li>
+            <li>Word Family (act, action, active)</li>
+            <li>Synonyms & Antonyms</li>
+            <li>Context থেকে অর্থ বোঝা</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">👂</div>
+          <div class="skill-title">Listening Practice</div>
+          <ul class="skill-list">
+            <li>Simple Podcast শোনা</li>
+            <li>TED-Ed (YouTube)</li>
+            <li>English Subtitles চালু রেখে দেখা</li>
+            <li>Shadowing technique</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">✍️</div>
+          <div class="skill-title">Simple Writing</div>
+          <ul class="skill-list">
+            <li>Diary লেখা (English-এ)</li>
+            <li>Short paragraph লেখা</li>
+            <li>Email format শেখা</li>
+            <li>Sentence connector: and, but, so</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="resources-title">📚 সেরা রিসোর্স</div>
+      <div class="resources-grid">
+        <span class="resource-tag free">🟢 British Council</span>
+        <span class="resource-tag free">🟢 TED-Ed YouTube</span>
+        <span class="resource-tag free">🟢 Grammarly (Free)</span>
+        <span class="resource-tag free">🟢 VOA Learning English</span>
+        <span class="resource-tag paid">⭐ English Grammar in Use (Murphy)</span>
+        <span class="resource-tag free">🟢 Vocabulary.com</span>
+      </div>
+
+      <div class="tip-box">
+        <strong>💡 Pro Tip:</strong> "Shadowing" technique ব্যবহার করো — কোনো Native speaker-এর কথা শুনে সাথে সাথে Repeat করো। এতে Pronunciation ও Fluency দুটোই উন্নত হয়।
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase phase-3" id="p3">
+    <div class="phase-header" onclick="toggle('p3')">
+      <div class="phase-num">৩</div>
+      <div class="phase-meta">
+        <div class="phase-label">Phase 03 · Intermediate</div>
+        <div class="phase-title">Fluency ও Confidence বাড়াও</div>
+        <div class="phase-subtitle">Duration: মাস ৬–৯</div>
+      </div>
+      <span class="phase-badge">Intermediate</span>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="phase-body">
+      <div class="progress-wrap">
+        <div class="progress-label"><span>লক্ষ্যমাত্রা</span><span>Months 6–9</span></div>
+        <div class="progress-bar"><div class="progress-fill fill-purple" style="width:75%"></div></div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">🗣️</div>
+          <div class="skill-title">Speaking Fluency</div>
+          <ul class="skill-list">
+            <li>Language Exchange Partner খোঁজো</li>
+            <li>HelloTalk / Tandem App</li>
+            <li>Debate ও Discussion practice</li>
+            <li>English Monologue রেকর্ড করো</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📖</div>
+          <div class="skill-title">Reading Skills</div>
+          <ul class="skill-list">
+            <li>Graded Readers পড়া</li>
+            <li>News: BBC, The Guardian</li>
+            <li>Short Story Books</li>
+            <li>Speed reading practice</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">✍️</div>
+          <div class="skill-title">Advanced Writing</div>
+          <ul class="skill-list">
+            <li>Paragraph structure: Topic sentence</li>
+            <li>Essay writing (Opinion, Argumentative)</li>
+            <li>Formal vs Informal email</li>
+            <li>Cohesion: However, Therefore, Although</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🎬</div>
+          <div class="skill-title">Immersion পদ্ধতি</div>
+          <ul class="skill-list">
+            <li>English Movie (No subtitle)</li>
+            <li>English Podcast daily</li>
+            <li>Think in English — মনে মনে English ভাবো</li>
+            <li>English Content বেশি consume করো</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="resources-title">📚 সেরা রিসোর্স</div>
+      <div class="resources-grid">
+        <span class="resource-tag free">🟢 HelloTalk App</span>
+        <span class="resource-tag free">🟢 BBC News</span>
+        <span class="resource-tag free">🟢 Coursera (Audit Free)</span>
+        <span class="resource-tag free">🟢 italki (Free trial)</span>
+        <span class="resource-tag paid">⭐ Speak English Naturally (Udemy)</span>
+        <span class="resource-tag free">🟢 TED Talks</span>
+      </div>
+
+      <div class="tip-box">
+        <strong>💡 Pro Tip:</strong> নিজের Speaking রেকর্ড করো এবং শুনো। প্রথমে অদ্ভুত লাগবে, কিন্তু এটাই সবচেয়ে দ্রুত Pronunciation উন্নত করার পদ্ধতি।
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase phase-4" id="p4">
+    <div class="phase-header" onclick="toggle('p4')">
+      <div class="phase-num">৪</div>
+      <div class="phase-meta">
+        <div class="phase-label">Phase 04 · Advanced</div>
+        <div class="phase-title">দক্ষতা পরিমার্জন ও Professional Level</div>
+        <div class="phase-subtitle">Duration: মাস ১০–১২+</div>
+      </div>
+      <span class="phase-badge">Advanced</span>
+      <div class="toggle-icon">▼</div>
+    </div>
+    <div class="phase-body">
+      <div class="progress-wrap">
+        <div class="progress-label"><span>লক্ষ্যমাত্রা</span><span>Months 10–12+</span></div>
+        <div class="progress-bar"><div class="progress-fill fill-rust" style="width:95%"></div></div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">🏆</div>
+          <div class="skill-title">Advanced Grammar</div>
+          <ul class="skill-list">
+            <li>Conditionals (If I had…)</li>
+            <li>Passive Voice</li>
+            <li>Reported Speech</li>
+            <li>Subjunctive Mood</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">💼</div>
+          <div class="skill-title">Professional English</div>
+          <ul class="skill-list">
+            <li>Business Email writing</li>
+            <li>Presentation skills</li>
+            <li>Job Interview preparation</li>
+            <li>LinkedIn Profile লেখা</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">📝</div>
+          <div class="skill-title">Exam Preparation</div>
+          <ul class="skill-list">
+            <li>IELTS / TOEFL (যদি দরকার হয়)</li>
+            <li>GRE Vocabulary</li>
+            <li>Mock tests দেওয়া</li>
+            <li>Time management</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🎯</div>
+          <div class="skill-title">Native-level Skills</div>
+          <ul class="skill-list">
+            <li>Idioms & Phrasal Verbs</li>
+            <li>Humor ও Sarcasm বোঝা</li>
+            <li>Cultural nuances</li>
+            <li>Academic Writing</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="resources-title">📚 সেরা রিসোর্স</div>
+      <div class="resources-grid">
+        <span class="resource-tag free">🟢 IELTS.org (Free materials)</span>
+        <span class="resource-tag free">🟢 Magoosh Blog</span>
+        <span class="resource-tag paid">⭐ IELTS Complete Preparation</span>
+        <span class="resource-tag free">🟢 Cambridge Dictionary Online</span>
+        <span class="resource-tag free">🟢 The Economist</span>
+        <span class="resource-tag paid">⭐ italki (Tutor lessons)</span>
+      </div>
+
+      <div class="tip-box">
+        <strong>💡 Pro Tip:</strong> এই পর্যায়ে শুধু English-এ ভাবো এবং সবকিছু English-এ করার চেষ্টা করো। News পড়া, বই পড়া, Journal লেখা — সব কিছু English-এ।
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ DAILY SCHEDULE ══ -->
+  <div class="section-header">
+    <h2>দৈনিক সময়সূচি</h2>
+    <p>প্রতিদিন মাত্র ১ ঘণ্টার অনুশীলন পরিকল্পনা</p>
+    <div class="divider"></div>
+  </div>
+  <div class="schedule-grid">
+    <div class="schedule-card">
+      <div class="schedule-day">সকাল · ১৫ মিনিট</div>
+      <div class="schedule-content">
+        <strong>📚 Vocabulary</strong>
+        ঘুম থেকে উঠে ৫টি নতুন শব্দ শেখো ও আগেরগুলো Review করো (Anki App)
+      </div>
+    </div>
+    <div class="schedule-card">
+      <div class="schedule-day">দুপুর · ২০ মিনিট</div>
+      <div class="schedule-content">
+        <strong>👂 Listening</strong>
+        Podcast বা YouTube English Content শোনো। Commute-এর সময় কাজে লাগাও।
+      </div>
+    </div>
+    <div class="schedule-card">
+      <div class="schedule-day">বিকেল · ১৫ মিনিট</div>
+      <div class="schedule-content">
+        <strong>📖 Reading</strong>
+        ছোট Article বা Story পড়ো। অজানা শব্দ নোট করো।
+      </div>
+    </div>
+    <div class="schedule-card">
+      <div class="schedule-day">রাত · ১০ মিনিট</div>
+      <div class="schedule-content">
+        <strong>✍️ Writing</strong>
+        ৫–৭ বাক্যে আজকের দিন English-এ Diary লেখো।
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TIPS ══ -->
+  <div class="section-header">
+    <h2>সফলতার ১০টি গোল্ডেন টিপস</h2>
+    <p>যে কৌশলগুলো শেখার গতি দ্বিগুণ করবে</p>
+    <div class="divider"></div>
+  </div>
+  <ul class="tips-list">
+    <li>
+      <strong>Consistency — প্রতিদিন অনুশীলন করো</strong>
+      <span>সপ্তাহে ৭ দিন ৩০ মিনিট, সপ্তাহে ১ দিন ৩ ঘণ্টার চেয়ে অনেক বেশি কার্যকর।</span>
+    </li>
+    <li>
+      <strong>লজ্জা ভুলে যাও, ভুল করো</strong>
+      <span>ভুল করা শেখার অংশ। ভুল না করলে শেখা হয় না। বলো, ভুল হোক।</span>
+    </li>
+    <li>
+      <strong>English Environment তৈরি করো</strong>
+      <span>Phone, Computer, Social Media — সব English-এ Set করো। চারদিকে English রাখো।</span>
+    </li>
+    <li>
+      <strong>Shadowing Technique ব্যবহার করো</strong>
+      <span>Native speaker-এর কথা শুনে তাৎক্ষণিক Follow করো। Accent ও Rhythm উন্নত হবে।</span>
+    </li>
+    <li>
+      <strong>Passive শেখা নয়, Active Practice করো</strong>
+      <span>শুধু পড়া বা দেখা নয় — বলো, লেখো, প্রশ্ন করো। Active learning সবচেয়ে কার্যকর।</span>
+    </li>
+    <li>
+      <strong>Language Partner খোঁজো</strong>
+      <span>HelloTalk, Tandem বা Conversation Club-এ যোগ দাও। Real conversation সবচেয়ে দ্রুত উন্নতি দেয়।</span>
+    </li>
+    <li>
+      <strong>Context থেকে শেখো</strong>
+      <span>শুধু Dictionary নয়, বাক্যের মধ্যে শব্দ শেখো। Word ব্যবহারের pattern মাথায় থাকবে।</span>
+    </li>
+    <li>
+      <strong>নিজেকে রেকর্ড করো</strong>
+      <span>Speaking রেকর্ড করে শুনো। নিজের Mistake নিজেই ধরতে পারবে।</span>
+    </li>
+    <li>
+      <strong>English-এ ভাবতে শেখো</strong>
+      <span>Bengali থেকে Translate না করে সরাসরি English-এ চিন্তা করার অভ্যাস তৈরি করো।</span>
+    </li>
+    <li>
+      <strong>Progress Track করো</strong>
+      <span>প্রতি সপ্তাহে নিজের Speaking বা Writing দেখো। Progress দেখলে Motivation বাড়ে।</span>
+    </li>
+  </ul>
+
+  <!-- ══ COMMON MISTAKES ══ -->
+  <div class="section-header">
+    <h2>সাধারণ ভুল এড়িয়ে চলো</h2>
+    <p>বাংলাদেশিরা যে ভুলগুলো বেশি করে</p>
+    <div class="divider"></div>
+  </div>
+  <div class="mistake-row">
+    <div class="mistake-card wrong">
+      <div class="label">❌ ভুল পদ্ধতি</div>
+      Grammar শুধু মুখস্থ করা কিন্তু বলার Practice না করা
+    </div>
+    <div class="mistake-card right">
+      <div class="label">✅ সঠিক পদ্ধতি</div>
+      Grammar শিখে সাথে সাথে বাক্যে ব্যবহার করো
+    </div>
+  </div>
+  <div class="mistake-row" style="margin-top:12px">
+    <div class="mistake-card wrong">
+      <div class="label">❌ ভুল পদ্ধতি</div>
+      "She go to school" — Verb conjugation ভুল করা
+    </div>
+    <div class="mistake-card right">
+      <div class="label">✅ সঠিক পদ্ধতি</div>
+      "She goes to school" — Subject অনুযায়ী Verb পরিবর্তন
+    </div>
+  </div>
+  <div class="mistake-row" style="margin-top:12px">
+    <div class="mistake-card wrong">
+      <div class="label">❌ ভুল পদ্ধতি</div>
+      একসাথে অনেক কিছু শিখতে গিয়ে কিছুই শেখা না হওয়া
+    </div>
+    <div class="mistake-card right">
+      <div class="label">✅ সঠিক পদ্ধতি</div>
+      একটি বিষয়ে মনোযোগ দাও, সম্পূর্ণ করো, তারপর পরেরটা
+    </div>
+  </div>
+  <div class="mistake-row" style="margin-top:12px">
+    <div class="mistake-card wrong">
+      <div class="label">❌ ভুল পদ্ধতি</div>
+      শুধু Bengali মিডিয়া দেখা, English input শূন্য রাখা
+    </div>
+    <div class="mistake-card right">
+      <div class="label">✅ সঠিক পদ্ধতি</div>
+      প্রতিদিন অন্তত ৩০ মিনিট English Content consume করো
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="quote">"A different language is a different vision of life."</div>
+  <div class="quote-attr">— Federico Fellini</div>
+  <p style="margin-top:20px;opacity:.35;font-size:.8rem">শুরু করো আজ থেকেই। প্রতিটি বাক্য তোমাকে এগিয়ে নিয়ে যাবে।</p>
+</footer>
+
+<script>
+function toggle(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+// Animate progress bars on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.progress-fill').forEach(bar => {
+        const w = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => bar.style.width = w, 100);
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.phase').forEach(p => observer.observe(p));
+</script>
+</body>
+</html>
